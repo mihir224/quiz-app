@@ -7,5 +7,3 @@ Current Progress:
 - Components setup
 - Redux configured and setup with regard to project
 - Custom hook defined (useFetchQuestions) to initialize questions in the DB to redux store
-
-- 
