@@ -17,7 +17,6 @@ function Quiz(){
         console.log(result)
     })
     function handleNext(){
-        setSub(true);
         dispatch(moveNext());
         if(result.length<=idx){ //this makes sure that whenever the user changes a previous ans, the new ans is not saved as a new value is the result array
             dispatch(PushRes(resultIndex));
@@ -38,10 +37,10 @@ function Quiz(){
         <div id="quiz">
         <Question selectOption={selectOption}/>
             <div>
-                <button type="button" onClick={handlePrev}>Prev</button>
+                {idx>0?<button type="button" onClick={handlePrev}>Prev</button>:<div></div>}
                 <button type="button" onClick={handleNext}>Next</button>
             </div>
-            <Link to="/result"><button style={{display:sub?"content":"none"}} type="submit">Submit</button></Link>
+            {idx>=questions.length-1&&<Link to="/result"><button type="submit">Submit</button></Link>}
         </div>
     )
 }
