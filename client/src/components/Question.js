@@ -4,6 +4,7 @@ import { useFetchQuestion } from "../hooks/FetchQuestion"; //this custom hook is
 
 function Question({selectOption}){
     const [{isLoading,APIdata,err}]=useFetchQuestion();
+    const[isChanged, setIsChanged]=useState(false);
     React.useEffect(()=>{
         //console.log(isLoading)
         // console.log(APIdata)

@@ -25,12 +25,18 @@ const quesSlice=createSlice({
                 ...state,
                 qIdx:state.qIdx-1
             }
+        },
+        resetQues:()=>{
+            return {
+                quesData:[],
+                answers:[], 
+                qIdx:0
+            }
         }
-
     }
 })
 
-export const {startQuiz,moveNext,movePrev} = quesSlice.actions;
+export const {startQuiz,moveNext,movePrev,resetQues} = quesSlice.actions;
 export default quesSlice.reducer;
 
 

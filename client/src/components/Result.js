@@ -1,7 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom";
+import { resetQues } from "../redux/quesSlice";
+import { resetResult } from "../redux/resultSlice";
 
 function Result(){
+    const dispatch=useDispatch();
+    function handleRestart(){
+        dispatch(resetQues());
+        dispatch(resetResult());
+    }
     return (
         <div id="result">
         <div id="details">
@@ -27,7 +35,7 @@ function Result(){
                 <span>Passed</span>
             </div>
         </div>
-        <Link to="/"><button type="button">Tap to restart</button></Link>
+        <Link to="/"><button type="button" onClick={handleRestart}>Tap to restart</button></Link>
     </div>
     )
 }

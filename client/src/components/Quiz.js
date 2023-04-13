@@ -4,14 +4,14 @@ import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { moveNext, movePrev } from "../redux/quesSlice";
 import { UpdateRes } from "../hooks/UpdateResult";
-import { set } from "mongoose";
+import {Navigate} from "react-router-dom"; //to navigate the user to result page once he answers the last question
 
 function Quiz(){
     const dispatch=useDispatch();
     const[sub,setSub]=useState(false);
     const [resultIndex,setResultIndex]=useState(null);
-    const idx= useSelector(state=>state.questions.qIdx);
-    const questions= useSelector(state=>state.questions.quesData)
+    const idx=useSelector(state=>state.questions.qIdx);
+    const questions=useSelector(state=>state.questions.quesData)
     const result=useSelector(state=>state.result.result)
     React.useEffect(()=>{
         console.log(result)
@@ -20,7 +20,7 @@ function Quiz(){
         setSub(true);
         if(idx<questions.length){
             dispatch(moveNext());
-            dispatch(UpdateRes(1))
+            dispatch(UpdateRes(resultIndex));
         }
     }
     function handlePrev(){
@@ -30,6 +30,9 @@ function Quiz(){
     }
     function selectOption(index){
         setResultIndex(index);
+    }
+    if(result.length&&result.length>=questions.length){ //array.length==0 evaluates to false so this will not be called if result.length is zero
+        return <Navigate to='/result' replace={true} /> //replace here replaces the current route to the passed route
     }
     return (  
         <div id="quiz">
