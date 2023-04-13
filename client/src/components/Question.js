@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFetchQuestion } from "../hooks/FetchQuestion"; //this custom hook is basically used to initialise the state of questions with the questions data
+import { updateResult } from "../redux/resultSlice";
 
 function Question({selectOption}){
+    const dispatch=useDispatch();
     const [{isLoading,APIdata,err}]=useFetchQuestion();
-    const[isChanged, setIsChanged]=useState(false);
+    const idx=useSelector(state=>state.questions.qIdx);
+    const [checked,setChecked]=useState(null);
+    // const[isChanged, setIsChanged]=useState(false);
+
     React.useEffect(()=>{
         //console.log(isLoading)
         // console.log(APIdata)
         // console.count("msi")
+        dispatch(updateResult({idx,checked})) //sending an object as an action 
     })
     const q=useSelector(state=>state.questions.quesData[state.questions.qIdx]);
     const index=useSelector(state=>state.questions.qIdx)
@@ -20,6 +26,7 @@ function Question({selectOption}){
     function handleChange(i){
         console.log(i);
         selectOption(i);
+        setChecked(i);
     }
     if(isLoading){
         return <h2>Loading...</h2>
