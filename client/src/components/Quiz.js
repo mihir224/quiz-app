@@ -3,20 +3,21 @@ import Question from "./Question";
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { moveNext, movePrev } from "../redux/quesSlice";
-import { PushRes } from "../hooks/UpdateResult";
+import { PushRes } from "../hooks/PushResult";
 import {Navigate} from "react-router-dom"; //to navigate the user to result page once he answers the last question
 
 function Quiz(){
     const dispatch=useDispatch();
-    const[sub,setSub]=useState(false);
-    const [resultIndex,setResultIndex]=useState (null);
+    const [resultIndex,setResultIndex]=useState (undefined);
+    const state=useSelector(state=>state);
     const idx=useSelector(state=>state.questions.qIdx);
     const questions=useSelector(state=>state.questions.quesData)
     const result=useSelector(state=>state.result.result)
     React.useEffect(()=>{
-        console.log(result)
+       // console.log(result)
     })
     function handleNext(){
+        setResultIndex(undefined) //to make sure that if user didn't select anything, it is saved as undefined in result array
         dispatch(moveNext());
         if(result.length<=idx){ //this makes sure that whenever the user changes a previous ans, the new ans is not saved as a new value is the result array
             dispatch(PushRes(resultIndex));

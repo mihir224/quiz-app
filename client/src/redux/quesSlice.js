@@ -11,7 +11,8 @@ const quesSlice=createSlice({
         startQuiz:(state,action)=>{
             return{
                 ...state,
-                quesData:action.payload //while dispatching the action, we will be sending the question data each time
+                quesData:action.payload.questions, //while dispatching the action, we will be sending the question data each time
+                answers:action.payload.answers
             }
         },
         moveNext:(state)=>{
