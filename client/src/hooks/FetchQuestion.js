@@ -7,6 +7,7 @@ import { data } from "../sample-data/data";
 export const useFetchQuestion=()=>{ //whenever we define a custom hook, it is necessary to use the 'use' keyword as a prefix to the hook function to tell the react app that it is a custom hook
     const dispatch=useDispatch();
     const [getData,setData]=React.useState({isLoading:false,APIdata:[],err:null})
+    const answers=[0,2,1];
     React.useEffect(()=>{ 
         setData((prev)=>({ //when we wrap the body of the function in parenthesis, it is not necessary to return anything. Everything inside will be returned automatically
             ...prev,
@@ -25,7 +26,7 @@ export const useFetchQuestion=()=>{ //whenever we define a custom hook, it is ne
                         ...prev,
                         APIdata:questions
                     }))
-                    dispatch(startQuiz(questions));
+                    dispatch(startQuiz({questions,answers}));
                 }
                 else{
                     throw new Error("No data available")
