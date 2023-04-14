@@ -12,9 +12,10 @@ function Quiz(){
     const state=useSelector(state=>state);
     const idx=useSelector(state=>state.questions.qIdx);
     const questions=useSelector(state=>state.questions.quesData)
+    const user=useSelector(state=>state.result.userId);
     const result=useSelector(state=>state.result.result)
     React.useEffect(()=>{
-       // console.log(result)
+        console.log(state)
     })
     function handleNext(){
         setResultIndex(undefined) //to make sure that if user didn't select anything, it is saved as undefined in result array
@@ -34,7 +35,7 @@ function Quiz(){
     if(result.length&&result.length>=questions.length){ //array.length==0 evaluates to false so this will not be called if result.length is zero
         return <Navigate to='/result' replace={true} /> //replace here replaces the current route to the passed route
     }
-    return (  
+    return user? (   //an empty string returns false ie if there is no user name entered, we will redirect user to home and we do a similar thing with result
         <div id="quiz">
         <Question selectOption={selectOption}/>
             <div>
@@ -43,7 +44,7 @@ function Quiz(){
             </div>
             {idx>=questions.length-1&&<Link to="/result"><button type="submit">Submit</button></Link>}
         </div>
-    )
+    ):<Navigate to="/" replace={true}></Navigate>
 }
 
 export default Quiz;

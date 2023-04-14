@@ -27,3 +27,5 @@ export const data=[
         ]
     }    
 ]
+
+export const answers=[0,2,1];

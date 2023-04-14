@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {Link} from "react-router-dom";
+import {Link,Navigate} from "react-router-dom";
 import { resetQues } from "../redux/quesSlice";
 import { resetResult } from "../redux/resultSlice";
 
@@ -14,12 +14,12 @@ function Result(){
     const points=5;
     const totalPoints=points*totalQues; //5 points for each ques
     const attempted=result.filter(item=>item!==undefined).length;
-    const score=result.map((item,index)=>(answers[index]==item)).map(item=>item*points).reduce((prev,current)=>prev+current); 
+    const score=result.length!==0&&result.map((item,index)=>(answers[index]===item)).map(item=>item*points).reduce((prev,current)=>prev+current); 
     function handleRestart(){
         dispatch(resetQues());
         dispatch(resetResult());
     }
-    return (
+    return userId?(
         <div id="result">
         <div id="details">
             <div className="result-items">
@@ -45,8 +45,8 @@ function Result(){
             </div>
         </div>
         <Link to="/"><button type="button" onClick={handleRestart}>Tap to restart</button></Link>
-    </div>
-    )
+    </div>):<Navigate to="/" replace={true}></Navigate>
+    
 }
 
 export default Result;
