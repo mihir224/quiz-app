@@ -12,6 +12,9 @@ Current Progress:
 - Mapped user inputs in a results array 
 - Configured user result on the basis of their inputs by comparing the results array with answers array
 - Initialised Backend
-- Added routes, controllers and models for Questions and Result
+- Added routes, controllers and models for questions and result
+- Set-up CRUD operations for both questions and result
+- Fetched questions from backend
+- Saved result to backend
 
 
