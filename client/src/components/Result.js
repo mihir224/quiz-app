@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Link,Navigate} from "react-router-dom";
@@ -15,6 +16,29 @@ function Result(){
     const totalPoints=points*totalQues; //5 points for each ques
     const attempted=result.filter(item=>item!==undefined).length;
     const score=result.length!==0&&result.map((item,index)=>(answers[index]===item)).map(item=>item*points).reduce((prev,current)=>prev+current); 
+    //   userId:{
+    //     type:String
+    // },
+    // result:{
+    //     type:Array,
+    //     default:[]
+    // },
+    // points:{
+    //     type:Number,
+    //     default:0
+    // },
+    // attempted:{
+    //     type:Number,
+    //     default:0
+    // },
+    // outcome:{
+    //     type:String,
+    //     default:' '
+    // }
+    (async()=>{
+        const savedResult=await axios.post("http://localhost:8000/api/results/add",{userId:userId,result:result,points:score,attempted:attempted,outcome:score>=(totalPoints*50/100)?"Passed":"Failed"},data=>data)
+        console.log(savedResult)
+    })();
     function handleRestart(){
         dispatch(resetQues());
         dispatch(resetResult());
