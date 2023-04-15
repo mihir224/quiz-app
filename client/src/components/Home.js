@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom";
 import { setUserId } from "../redux/resultSlice";
 
 function Home(){
     const dispatch=useDispatch();
-    const inputRef=React.useRef(null);
+    const inputRef=useRef(null);
     function handleClick(){
         if(inputRef.current.value!==null){
             dispatch(setUserId(inputRef.current?.value));
