@@ -18,5 +18,18 @@ Current Progress:
 - Saved result to backend
 - Added styling to all components
 
+To run the app locally:
+
+Clone the repo:
+
+### `git clone https://github.com/mihir224/quiz-app`
+
+Create a .env file inside the server folder to store your mongoDB credentials
+
+Then, in the client folder and server folder, run:
+
+### `npm start`
+
+Be sure to make a post request to http://localhost:8000/api/questions/add with your customised questions using any API tools like Postman, etc. to initialise the questions to the DB.
 
 
