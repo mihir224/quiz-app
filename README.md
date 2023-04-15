@@ -17,6 +17,6 @@ Current Progress:
 - Fetched questions from backend
 - Saved result to backend
 - Added styling to all components
-- Done
+
 
 
