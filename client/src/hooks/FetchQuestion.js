@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { startQuiz } from "../redux/quesSlice";
-import {data, answers } from "../sample-data/data";
+import axios from "axios";
 
 
 export const useFetchQuestion=()=>{ //whenever we define a custom hook, it is necessary to use the 'use' keyword as a prefix to the hook function to tell the react app that it is a custom hook
@@ -9,13 +9,15 @@ export const useFetchQuestion=()=>{ //whenever we define a custom hook, it is ne
     const [getData,setData]=React.useState({isLoading:false,APIdata:[],err:null})
     React.useEffect(()=>{ 
         setData((prev)=>({ //when we wrap the body of the function in parenthesis, it is not necessary to return anything. Everything inside will be returned automatically
-            ...prev,
+            ...prev, 
             isLoading:true
         }));
+    
         
         (async()=>{ //defining a anonymous async function to handle the data coming from the backend and calling it simultaneously
-            let questions=await data; //currently await is not necessary as we're storing data locally but it will be necessary when we use a database as we'd have to fetch data from it which would take some time
+            //let questions=await data; //currently await is not necessary as we're storing data locally but it will be necessary when we use a database as we'd have to fetch data from it which would take some time
             try{
+                const [{questions,answers}]=await (await axios.get('http://localhost:8000/api/questions/find')).data;
                 if(questions.length>0){
                     setData((prev)=>({
                         ...prev,
