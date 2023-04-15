@@ -1,20 +1,28 @@
+import Question from "../models/Question.js"
+import {data,answers} from "../sample-data/data.js"
 export const getQues = async (req,res)=>{
     try{
-        res.status(200).json("hello")
+        const q=await Question.find();
+        res.status(200).json(q);
     }catch(err){
-        console.log(err)
+        res.json(err)
     }
 }
 export const addQues=async(req,res)=>{
+    // const newQuestion=new Question({...req.body})
     try{
-        res.status(200).json("hello")
+        // const savedQuestion=await newQuestion.save();
+        // res.status(200).json(savedQuestion);
+        await Question.insertMany({questions:data,answers:answers});
+        res.status(200).json("questions saved")
     }catch(err){
-        console.log(err)
+        res.json(err)
     }
 }
 export const deleteQues=async(req,res)=>{
     try{
-        res.status(200).json("hello")
+        await Question.deleteMany();
+        res.status(200).json("questions deleted")
     }catch(err){
         console.log(err)
     }
