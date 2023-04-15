@@ -16,5 +16,7 @@ Current Progress:
 - Set-up CRUD operations for both questions and result
 - Fetched questions from backend
 - Saved result to backend
+- Added styling to all components
+- Done
 
 
