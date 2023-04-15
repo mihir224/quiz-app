@@ -1,0 +1,18 @@
+#quiz-btns{
+    display: flex;
+    padding:10px ;
+    justify-content: space-around;
+
+}
+.quiz-btn{
+    background-color: inherit;
+    font-family: "Montserrat";
+    font-weight: bold;
+    border:1px solid gray;
+    padding:5px 10px;
+    color: white;
+    border-radius: 6px;
+}
+.quiz-btn:hover{
+    background-color: rgba(128, 128, 128, 0.671);
+}

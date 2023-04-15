@@ -1,0 +1,19 @@
+
+#result{
+    text-align: center;
+    width:40vw;
+    height: 49vh;
+    border: 1px solid gray;
+    margin-top: 50px;
+}
+#details{
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    padding: 0px 10px 5px 10px;
+}
+.result-items{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
