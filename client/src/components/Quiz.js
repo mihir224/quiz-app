@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { moveNext, movePrev } from "../redux/quesSlice";
 import { PushRes } from "../hooks/PushResult";
 import {Navigate} from "react-router-dom"; //to navigate the user to result page once he answers the last question
+import "../styles/Quiz.css";
 
 function Quiz(){
     const dispatch=useDispatch();
@@ -36,13 +37,15 @@ function Quiz(){
         return <Navigate to='/result' replace={true} /> //replace here replaces the current route to the passed route
     }
     return user? (   //an empty string returns false ie if there is no user name entered, we will redirect user to home and we do a similar thing with result
-        <div id="quiz">
+        <div id="quiz" style={{textAlign:"center"}}>
+         <h1>Quiziosity</h1>
         <Question selectOption={selectOption}/>
-            <div>
-                {idx>0?<button type="button" onClick={handlePrev}>Prev</button>:<div></div>}
-                <button type="button" onClick={handleNext}>Next</button>
+            <div id="quiz-btns">
+                {idx>0?<button type="button" className="quiz-btn" onClick={handlePrev}>Prev</button>:<div></div>}
+                <button type="button" className="quiz-btn" onClick={handleNext}>Next</button>
+                {idx>=questions.length-1&&<Link style={{textDecoration:"none"}} to="/result"><button className="quiz-btn" type="submit">Submit</button></Link>}
             </div>
-            {idx>=questions.length-1&&<Link to="/result"><button type="submit">Submit</button></Link>}
+            
         </div>
     ):<Navigate to="/" replace={true}></Navigate>
 }

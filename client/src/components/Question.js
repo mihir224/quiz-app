@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchQuestion } from "../hooks/FetchQuestion"; //this custom hook is basically used to initialise the state of questions with the questions data
 import { updateResult } from "../redux/resultSlice";
+import "../styles/Questions.css";
 
 function Question({selectOption}){
     const dispatch=useDispatch();
@@ -37,12 +38,12 @@ function Question({selectOption}){
     return (
         <div id="question">
         {/* ? after q makes sure that q has been resolved and only then the certain specified values are passed */}
-        <h2>{q?.question}</h2> 
-            <ul key={q?.id}>
+        <h2 style={{textAlign:"left"}}>{`${index+1}. ${q?.question}`}</h2> 
+            <ul key={q?.id} id="quesList">
             {q?.options.map((option,idx)=>{
-                return (<li>
-                            <input type="radio" id={`option${idx+1}`} name="option" onChange={()=>handleChange(idx)}/>
-                            <label htmlFor={`option${idx+1}`}>{option}</label>
+                return (<li className="ques">
+                            <input className="radio" style={{display:"none"}} type="radio" id={`option${idx+1}`} name="option" onChange={()=>handleChange(idx)} />
+                            <label htmlFor={`option${idx+1}`}><span>{option}</span></label>
                         </li>)
             })}
             </ul>
