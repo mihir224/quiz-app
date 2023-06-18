@@ -16,7 +16,7 @@ function Quiz(){
     const user=useSelector(state=>state.result.userId);
     const result=useSelector(state=>state.result.result)
     React.useEffect(()=>{
-        console.log(state)
+        console.log(result)
     })
     function handleNext(){
         setResultIndex(undefined) //to make sure that if user didn't select anything, it is saved as undefined in result array
@@ -43,7 +43,7 @@ function Quiz(){
             <div id="quiz-btns">
                 {idx>0?<button type="button" className="quiz-btn" onClick={handlePrev}>Prev</button>:<div></div>}
                 <button type="button" className="quiz-btn" onClick={handleNext}>Next</button>
-                {idx>=questions.length-1&&<Link style={{textDecoration:"none"}} to="/result"><button className="quiz-btn" type="submit">Submit</button></Link>}
+                {idx>=questions.length-1&&<button className="quiz-btn" type="submit" onClick={handleNext}>Submit</button>}
             </div>
             
         </div>

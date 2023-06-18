@@ -9,9 +9,9 @@ import "../styles/Result.css"
 function Result(){
     const dispatch=useDispatch();
     const {questions:{quesData,answers},result:{userId,result}}=useSelector(state=>state);
-    useEffect(()=>{
-        console.log(score)
-    })
+    // useEffect(()=>{
+    //     console.log(result)
+    // })
     const totalQues=quesData.length;
     const points=5;
     const totalPoints=points*totalQues; //5 points for each ques
