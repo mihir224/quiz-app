@@ -12,12 +12,9 @@ export const useFetchQuestion=()=>{ //whenever we define a custom hook, it is ne
             ...prev, 
             isLoading:true
         }));
-    
-        
         (async()=>{ //defining a anonymous async function to handle the data coming from the backend and calling it simultaneously
             //let questions=await data; //currently await is not necessary as we're storing data locally but it will be necessary when we use a database as we'd have to fetch data from it which would take some time
-            try{
-               
+            try{   
                 const [{questions,answers}]=await (await axios.get('http://localhost:8000/api/questions/find')).data;
                 if(questions.length>0){
                     setData((prev)=>({

@@ -14,6 +14,7 @@
 }
 .ques{
     border-radius: 6px;
+    transition-duration: 0.1s;
 }
 .ques:hover{
     background-color: rgba(240, 248, 255, 0.24);

@@ -20,6 +20,7 @@ function Result(){
     const score=result.length!==0&&result.map((item,index)=>(answers[index]===item)).map(item=>item*points).reduce((prev,current)=>prev+current); 
 
     (async()=>{
+        // const url=process.env.NODE_ENV==="production"?"https://youtube-clone-api224.onrender.com/api":"";
         const savedResult=await axios.post("http://localhost:8000/api/results/add",{userId:userId,result:result,points:score,attempted:attempted,outcome:score>=(totalPoints*50/100)?"Passed":"Failed"},data=>data)
         console.log(attempted)
     })();
