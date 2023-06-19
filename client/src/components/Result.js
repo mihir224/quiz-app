@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Link,Navigate} from "react-router-dom";
 import { resetQues } from "../redux/quesSlice";
@@ -9,9 +9,7 @@ import "../styles/Result.css"
 function Result(){
     const dispatch=useDispatch();
     const {questions:{quesData,answers},result:{userId,result}}=useSelector(state=>state);
-    // useEffect(()=>{
-    //     console.log(result)
-    // })
+
     const totalQues=quesData.length;
     const points=5;
     const totalPoints=points*totalQues; //5 points for each ques
@@ -20,8 +18,9 @@ function Result(){
     const score=result.length!==0&&result.map((item,index)=>(answers[index]===item)).map(item=>item*points).reduce((prev,current)=>prev+current); 
 
     (async()=>{
-        // const url=process.env.NODE_ENV==="production"?"https://youtube-clone-api224.onrender.com/api":"";
-        const savedResult=await axios.post("http://localhost:8000/api/results/add",{userId:userId,result:result,points:score,attempted:attempted,outcome:score>=(totalPoints*50/100)?"Passed":"Failed"},data=>data)
+        //https://quiziosity224-api.onrender.com/api/questions/find
+        const url=process.env.NODE_ENV==="production"?"https://quiziosity224-api.onrender.com":"http://localhost:8000";
+        const savedResult=await axios.post(`${url}/api/results/add`,{userId:userId,result:result,points:score,attempted:attempted,outcome:score>=(totalPoints*50/100)?"Passed":"Failed"},data=>data)
         console.log(attempted)
     })();
     function handleRestart(){
