@@ -1,9 +1,8 @@
 
 #quiz-btns{
     display: flex;
-    padding:10px ;
-    justify-content: space-around;
-
+    justify-content: space-between;
+    margin-top:20px;
 }
 .quiz-btn{
     background-color: inherit;
