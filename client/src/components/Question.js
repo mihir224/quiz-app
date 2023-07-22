@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFetchQuestion } from "../hooks/FetchQuestion"; //this custom hook is basically used to initialise the state of questions with the questions data
 import { updateResult } from "../redux/resultSlice";
 import "../styles/Questions.css";
+import { ThreeDots } from 'react-loader-spinner'
+
 
 function Question({selectOption}){
     const dispatch=useDispatch();
@@ -30,7 +32,20 @@ function Question({selectOption}){
         setChecked(i);
     }
     if(isLoading){
-        return <h2>Loading...</h2>
+        return (
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <ThreeDots 
+                height="80" 
+                width="80" 
+                radius="9"
+                color="white" 
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+                />
+                </div>
+        )
     }
     if(err){
         return <h2>{err||"SERVER ERROR"}</h2>
