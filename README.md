@@ -32,4 +32,17 @@ Then, in the client folder and server folder, run:
 
 Be sure to make a post request to http://localhost:8000/api/questions/add with your customised questions using any API tools like Postman, etc. to initialise the questions to the DB.
 
+Schema for the same:
+
+`{
+    questions:{
+        type:Array,
+        default:[]
+    },
+    answers:{
+        type:Array,
+        default:[]
+    }
+}`
+
 
